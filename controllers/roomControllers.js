@@ -4,7 +4,7 @@ const userDB = require("../models/userModel");
 const { model } = require("mongoose");
 
 const activeChats = new Map();
-const fillActiveChats = async () => {
+exports.fillActiveChats = async () => {
   try {
     const allChatingsFromDb = await allChats.find();
     allChatingsFromDb.forEach((e) => {
@@ -14,7 +14,7 @@ const fillActiveChats = async () => {
     throw new Error(err);
   }
 };
-fillActiveChats();
+
 exports.generateRoom = async (req, res) => {
   const { roomPass } = req.body; 
   const phrase = generateMeaningfulPhrase(activeChats);
