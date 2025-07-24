@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
 module.exports = { app };
-const { server } = require("./websocket/socketIoServer.js");
 const env = require("dotenv");
 env.config();
+const connectDB = require("./config/dbConfig.js"); // or wherever your file is
+connectDB();
+const { server } = require("./websocket/socketIoServer.js");
+
 const cors = require("cors");
-require("./config/dbConfig.js");
 app.use(express.json());
 app.use(
   cors({
